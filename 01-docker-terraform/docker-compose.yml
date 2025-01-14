@@ -1,0 +1,41 @@
+services:
+  db:
+    container_name: "${POSTGRES_HOST}"
+    image: postgres:17.2-alpine3.21
+    command: ["postgres", "-p${POSTGRES_PORT}"]
+    env_file: ".env"
+    ports:
+      - "${POSTGRES_OUT_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - vol_pg_data:/var/lib/postgresql/data
+    networks:
+      - nw_pipeline
+
+  pgadmin:
+    container_name: pgadmin
+    image: elestio/pgadmin:REL-8_13
+    env_file: ".env"
+    ports:
+      - "${PGADMIN_OUT_PORT}:${PGADMIN_LISTEN_PORT}"
+    volumes:
+      - vol_pgadmin_data:/var/lib/pgadmin
+    networks:
+      - nw_pipeline
+
+  pipeline:
+    container_name: ingestion_pipeline
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - nw_pipeline
+    depends_on:
+      - db
+
+volumes:
+  vol_pg_data:
+  vol_pgadmin_data:
+
+networks:
+  nw_pipeline:
+    driver: bridge

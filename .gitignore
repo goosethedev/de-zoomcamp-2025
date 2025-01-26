@@ -1,3 +1,14 @@
+# Local env and sensitive
 **/data/**
 *.env
 .venv
+gcp_creds.json
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json

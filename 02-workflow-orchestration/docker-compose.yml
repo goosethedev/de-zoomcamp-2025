@@ -28,7 +28,7 @@ services:
       # Not working for the required flows
       # See: https://github.com/kestra-io/kestra/issues/6908
       # - ./kestra/flows:/local_flows
-      - ./kestra/files:/files
+      # - ./kestra/files:/files
     environment:
       KESTRA_CONFIGURATION: |
         datasources:
@@ -81,7 +81,7 @@ services:
       - 9090:80
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-      - ./pgadmin-servers.json:/pgadmin4/servers.json
+      - ./pgadmin-init/servers.json:/pgadmin4/servers.json
     depends_on:
       postgres:
         condition: service_started

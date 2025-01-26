@@ -1,0 +1,28 @@
+id: gcp_destroy
+namespace: zoomcamp
+description: |
+  Remove the GCS bucket and BigQuery dataset when done to avoid charges.
+
+tasks:
+  # Required because can't delete non-empty bucket for now
+  # https://github.com/kestra-io/plugin-gcp/issues/321
+  - id: delete_gcs_bucket_files
+    type: io.kestra.plugin.gcp.gcs.DeleteList
+    from: "gs://{{kv('GCP_BUCKET_NAME')}}/"
+
+  - id: delete_gcs_bucket
+    type: io.kestra.plugin.gcp.gcs.DeleteBucket
+    name: "{{kv('GCP_BUCKET_NAME')}}"
+
+  - id: delete_bq_dataset
+    type: io.kestra.plugin.gcp.bigquery.DeleteDataset
+    name: "{{kv('GCP_BQ_DATASET_NAME')}}"
+    deleteContents: true
+
+pluginDefaults:
+  - type: io.kestra.plugin.gcp
+    values:
+      serviceAccount: "{{ kv('GCP_CREDS') }}"
+      projectId: "{{ kv('GCP_PROJECT_ID') }}"
+      location: "{{ kv('GCP_LOCATION') }}"
+      bucket: "{{ kv('GCP_BUCKET_NAME') }}"

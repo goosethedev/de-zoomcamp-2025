@@ -1,5 +1,5 @@
 id: postgres_taxi_scheduled
-namespace: ny_data
+namespace: zoomcamp
 description: |
   Extract and load the NYC Taxi data from the [DataTalksClub GitHub repo](https://github.com/DataTalksClub/nyc-tlc-data/releases) once a month for the "yellow" and "green" datasets into the PostgreSQL instance.
   It uses a merging mechanism, so reruns won't duplicate data.

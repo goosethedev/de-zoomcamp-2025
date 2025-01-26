@@ -1,0 +1,9 @@
+# Kestra credentials (check the docker-compose env vars)
+kestra_username = "kestra"
+kestra_password = "k3str4"
+
+# GCP details
+gcp_project_id      = "<your-project-id>"
+gcp_location        = "us-east1" # No hyphen after zone and number
+gcp_bucket_name     = "<your-bucket-name>"
+gcp_bq_dataset_name = "<your-bigquery-dataset-name>" # Only A-Z and underscores

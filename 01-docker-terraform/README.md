@@ -1,7 +1,16 @@
 # Module 1 Homework: Docker + SQL
 
+- [Summary](#summary)
 - [Running the Docker commands](#running-the-docker-commands)
 - [Homework answers](#homework-answers)
+
+## Summary
+
+The objective of this module was familiarizing with the Docker and Terraform CLI commands and a quick refresher on SQL and Python syntax.
+
+For that, I built a data ingestion pipeline as a Python script for the NYC taxi dataset, which would upload the data into a PostgreSQL database for then to be queried with the pgAdmin interface. All integrated as Docker containers and orchestrated with Docker Compose.
+
+Also, at the end I had to create a GCP account and manage some resources with Terraform to get familiar with it.
 
 ## Running the Docker commands
 

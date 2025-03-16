@@ -1,0 +1,30 @@
+name: "taxi_rides_ny"
+version: "1.0.0"
+
+# This setting configures which "profile" dbt uses for this project.
+profile: "taxi_rides_ny"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets: # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+models:
+  taxi_rides_ny:
+    staging:
+      +materialized: view
+
+    core:
+      +materialized: table
+
+    marts:
+      +materialized: table
+
+vars:
+  payment_type_values: [1, 2, 3, 4, 5, 6]

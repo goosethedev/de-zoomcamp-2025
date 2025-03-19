@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: sample_green
+    description: >
+      A sample of green taxi data of 5% of the total data.
